@@ -38,7 +38,7 @@ set_target_properties(noled.elf
 
 add_custom_target(noled.skprx ALL
 	COMMAND vita-elf-create -e ${CMAKE_SOURCE_DIR}/noled.yml noled.elf noled.velf ${CMAKE_SOURCE_DIR}/taihen.json
-	COMMAND vita-make-fself noled.velf noled.skprx
+	COMMAND vita-make-fself -c noled.velf noled.skprx
 )
 add_dependencies(noled.skprx noled.elf)
 
