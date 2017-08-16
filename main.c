@@ -20,6 +20,7 @@ SceUID disable_led_other(int bus, int port) {
 static void disable_led()
 {
 	ksceGpioPortClear(0, 7);
+	ksceGpioPortClear(0, 6);
 }
 
 int module_start(SceSize argc, const void *args)
