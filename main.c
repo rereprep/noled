@@ -9,7 +9,7 @@ void _start() __attribute__ ((weak, alias ("module_start")));
 static tai_hook_ref_t hook_disable_led;
 // this function is in kernel space
 SceUID disable_led_other(int bus, int port) {
-	if (bus == 0 && (port == 7 | port == 6))
+	if ((bus == 0) && ((port == 7) | (port == 6)))
 	{
 	return 0;	
 	}
