@@ -1,5 +1,5 @@
 # noled
-noled is a simple plugin to turn off the blue home button led of PS Vita. Especially useful at night.
+noled is a simple plugin to turn off the blue home button led of PS Vita. Especially useful at night. With the release of v1.2, it will now disable both the Home Button LED and Game Cartridge LED.
 
 https://youtu.be/YbxpdJ67VgE
 
@@ -16,4 +16,4 @@ after that, reboot your vita and restart henkaku.
 
 All credits to @xerpi, all i did was to compile the source.
 
-A known issue is, after resuming from standby, blue light will turn on for a second and then turn off. (v1.1 also solves this, now blue light is always off)
+A known issue is, after resuming from standby, blue light will turn on for a second and then turn off.
