@@ -4,7 +4,9 @@
 #include <psp2kern/kernel/modulemgr.h>
 
 void _start() __attribute__ ((weak, alias ("module_start")));
-	
+
+static SceUID hook_uid;
+
 // handle to our hook
 static tai_hook_ref_t hook_disable_led;
 // this function is in kernel space
@@ -15,7 +17,7 @@ SceUID disable_led_other(int bus, int port) {
 	}
 	//disable_led();
 	return TAI_CONTINUE(SceUID, hook_disable_led, bus, port);
-	}
+}
 
 static void disable_led()
 {
@@ -26,7 +28,7 @@ static void disable_led()
 int module_start(SceSize argc, const void *args)
 {
 	disable_led();
-	  taiHookFunctionExportForKernel(KERNEL_PID,                  // Kernel process
+	hook_uid = taiHookFunctionExportForKernel(KERNEL_PID,                  // Kernel process
                                  &hook_disable_led,           // Output a reference
                                  "SceLowio",              // Name of module being hooked
                                  TAI_ANY_LIBRARY,             // If there's multiple libs exporting this
@@ -37,5 +39,6 @@ int module_start(SceSize argc, const void *args)
 
 int module_stop(SceSize argc, const void *args)
 {
+	if(hook_uid >= 0)taiHookReleaseForKernel(hook_uid, hook_disable_led);
 	return SCE_KERNEL_STOP_SUCCESS;
 }
